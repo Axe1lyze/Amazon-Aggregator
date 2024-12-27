@@ -19,7 +19,7 @@
                 ifr.callback = ()=>{
                     var doc = ifr.contentDocument;
                     var pageTotal = Array.from(doc.querySelectorAll('.order-card div.a-column:nth-child(2) div:nth-child(2)'))
-                        .map(i=>Number(i.innerText.replace(/[^0-9.]/gi,"")))
+                        .map(i=>Number(i.innerText.replace(/[^0-9.]/gi,'')))
                         .reduce((a,b)=>a+b,0)
 
                     console.log([url, pageTotal]);
