@@ -2,15 +2,22 @@
 // open https://www.amazon.co.jp/gp/css/order-history and run this code.
 //
 // minified bookmarklet
-// javascript:(()=>{var e=document.createElement("script");e.src="https://code.jquery.com/jquery-3.7.1.min.js",e.onload=()=>{function e(e){alert(e+" JPY")}function r(n,t){$.get(n,a=>{var o=document.createElement("iframe");o.name="ifr_"+new Date().getTime(),o.style="display: none;",o.callback=()=>{var a=o.contentDocument,i=Array.from(a.querySelectorAll(".order-card div.a-column:nth-child(2) div:nth-child(2)")).map(e=>Number(e.innerText.replace(/[^0-9.]/gi,""))).reduce((e,r)=>e+r,0);console.log([n,i]);var c=a.querySelector("ul.a-pagination li.a-last a");if(c){r(new URL(c.href,n.origin).toString(),t+i);return}e(t)},o.onload=()=>{var e=o.contentDocument;e.write(a),e.write('<script>window.parent.document.querySelector("iframe[name='+o.name+']").callback();</script>')},document.body.appendChild(o),open("",o.name)})}$(()=>{var e;r("https://www.amazon.co.jp/your-orders/orders?timeFilter=year-"+prompt("year",new Date().getFullYear()),0)})},document.body.appendChild(e)})();
+// javascript:(()=>{var e=prompt("year",new Date().getFullYear());function t(t){var r;open("https://x.com/intent/post?text="+encodeURI("私はAmazonで"+e+"年に"+t.toLocaleString()+"円使いました！")+"&url="+encodeURI("https://github.com/Axe1lyze/Amazon-Aggregator/blob/main/README.md"))}var r=document.createElement("script");r.src="https://code.jquery.com/jquery-3.7.1.min.js",r.onload=()=>{function r(e,n){$.get(e,a=>{var o=document.createElement("iframe");o.name="ifr_"+new Date().getTime(),o.style="display: none;",o.callback=()=>{var a=o.contentDocument,i=Array.from(a.querySelectorAll(".order-card div.a-column:nth-child(2) div:nth-child(2)")).map(e=>Number(e.innerText.replace(/[^0-9.]/gi,""))).reduce((e,t)=>e+t,0);console.log([e,i]);var c=a.querySelector("ul.a-pagination li.a-last a");if(c){r(new URL(c.href,e.origin).toString(),n+i);return}t(n)},o.onload=()=>{var e=o.contentDocument;e.write(a),e.write('<script>window.parent.document.querySelector("iframe[name='+o.name+']").callback();</script>')},document.body.appendChild(o),open("",o.name)})}$(()=>{r("https://www.amazon.co.jp/your-orders/orders?timeFilter=year-"+e,0)})},document.body.appendChild(r)})();
 
 (()=>{
+    var year = prompt('year', new Date().getFullYear());
+    
+    function completed(total) {
+        var text = '私はAmazonで'+year+'年に'+total.toLocaleString()+'円使いました！';
+        var url = 'https://github.com/Axe1lyze/Amazon-Aggregator/blob/main/README.md';
+        var hashtags = 'Amazon';
+        open('https://x.com/intent/post?text='+encodeURI(text)+'&url='+encodeURI(url))+'&hashtags='+hashtags;
+    }
+    
     var script = document.createElement('script');
     script.src = 'https://code.jquery.com/jquery-3.7.1.min.js';
     script.onload = ()=>{
-
-        function completed(total) { alert(total+' JPY'); }
-
+        
         function crawl(url, total) {
             $.get(url, (resp)=>{
                 var ifr = document.createElement("iframe");
@@ -42,7 +49,6 @@
         }
         
         $(()=>{
-            var year = prompt('year', new Date().getFullYear());
             crawl('https://www.amazon.co.jp/your-orders/orders?timeFilter=year-'+year, 0);
         });
     };
