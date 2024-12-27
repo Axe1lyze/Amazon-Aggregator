@@ -2,8 +2,7 @@
 // open https://www.amazon.co.jp/gp/css/order-history and run this code.
 //
 // minified bookmarklet
-// javascript:(()=>{var e=document.createElement("script");e.src="https://code.jquery.com/jquery-3.7.1.min.js",e.onload=()=>{function e(e){alert(e+" JPY")}function r(t,a){$.get(t,n=>{var o=document.createElement("iframe");o.name="ifr_"+new Date().getTime(),o.callback=()=>{var n=o.contentDocument,i=Array.from(n.querySelectorAll(".order-card div.a-column:nth-child(2) div:nth-child(2)")).map(e=>Number(e.innerText.replace(/[^0-9.]/gi,""))).reduce((e,r)=>e+r,0);console.log([t,i]);var c=n.querySelector("ul.a-pagination li.a-last a");if(c){r(new URL(c.href,t.origin).toString(),a+i);return}e(a)},o.onload=()=>{var e=o.contentDocument;e.write(n),e.write('<script>window.parent.document.querySelector("iframe[name='+o.name+']").callback();</script>')},document.body.appendChild(o),open("",o.name)})}$(()=>{var e;r("https://www.amazon.co.jp/your-orders/orders?timeFilter=year-"+prompt("year",new Date().getFullYear()),0)})},document.body.appendChild(e)})();
-
+// javascript:(()=>{var e=document.createElement("script");e.src="https://code.jquery.com/jquery-3.7.1.min.js",e.onload=()=>{function e(e){alert(e+" JPY")}function r(n,t){$.get(n,a=>{var o=document.createElement("iframe");o.name="ifr_"+new Date().getTime(),o.style="display: none;",o.callback=()=>{var a=o.contentDocument,i=Array.from(a.querySelectorAll(".order-card div.a-column:nth-child(2) div:nth-child(2)")).map(e=>Number(e.innerText.replace(/[^0-9.]/gi,""))).reduce((e,r)=>e+r,0);console.log([n,i]);var c=a.querySelector("ul.a-pagination li.a-last a");if(c){r(new URL(c.href,n.origin).toString(),t+i);return}e(t)},o.onload=()=>{var e=o.contentDocument;e.write(a),e.write('<script>window.parent.document.querySelector("iframe[name='+o.name+']").callback();</script>')},document.body.appendChild(o),open("",o.name)})}$(()=>{var e;r("https://www.amazon.co.jp/your-orders/orders?timeFilter=year-"+prompt("year",new Date().getFullYear()),0)})},document.body.appendChild(e)})();
 
 (()=>{
     var script = document.createElement('script');
@@ -16,6 +15,7 @@
             $.get(url, (resp)=>{
                 var ifr = document.createElement("iframe");
                 ifr.name = 'ifr_'+new Date().getTime();
+                ifr.style = 'display: none;';
                 ifr.callback = ()=>{
                     var doc = ifr.contentDocument;
                     var pageTotal = Array.from(doc.querySelectorAll('.order-card div.a-column:nth-child(2) div:nth-child(2)'))
