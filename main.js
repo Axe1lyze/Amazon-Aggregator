@@ -6,8 +6,8 @@
 
 
 (()=>{
-    var script = document.createElement("script");
-    script.src = "https://code.jquery.com/jquery-3.7.1.min.js";
+    var script = document.createElement('script');
+    script.src = 'https://code.jquery.com/jquery-3.7.1.min.js';
     script.onload = ()=>{
 
         function completed(total) { alert(total+' JPY'); }
