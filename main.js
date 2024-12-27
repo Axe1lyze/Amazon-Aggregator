@@ -2,7 +2,7 @@
 // open https://www.amazon.co.jp/gp/css/order-history and run this code.
 
 (()=>{
-    var div = document.createElement("div");
+    var div = document.createElement('div');
     div.style = 'z-index: 1000; position:fixed; top:0px; width:100%; height:100%; padding:16px; margin:0px; background-color:white; text-align:center;';
     document.body.appendChild(div);
     var year = prompt('year', new Date().getFullYear());
