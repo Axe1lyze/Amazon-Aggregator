@@ -36,7 +36,7 @@
                 };
                 ifr.onload = ()=>{
                     var doc = ifr.contentDocument;
-                    doc.write('<script>Object.defineProperty(window.navigator, "'+userAgent+'", userAgent)</script>');
+                    doc.write('<script>Object.defineProperty(window.navigator, "userAgent", "'+userAgent+'")</script>');
                     doc.write(resp);
                     doc.write('<script>window.parent.document.querySelector("iframe[name='+ifr.name+']").callback();</script>');
                 };
