@@ -8,10 +8,14 @@
     var year = prompt('year', new Date().getFullYear());
     
     function completed(total) {
-        var text = '私はAmazonで'+year+'年に'+total.toLocaleString()+'円使いました！';
-        var url = 'https://github.com/Axe1lyze/Amazon-Aggregator/blob/main/README.md';
-        var hashtags = 'Amazon';
-        open('https://x.com/intent/post?text='+encodeURI(text)+'&url='+encodeURI(url))+'&hashtags='+hashtags;
+        var url = [
+            'https://x.com/intent/post',
+            [
+                ['text','私は #Amazon で'+year+'年に'+total.toLocaleString()+'円使いました！'],
+                ['url', 'https://github.com/Axe1lyze/Amazon-Aggregator/blob/main/README.md']
+            ].map(i=>[i[0],encodeURIComponent(i[1])].join('=')).join('&')
+        ].join('?');
+        open(url);
         div.innerHTML += '<br /> 合計: '+ total.toLocaleString() + '円';
     }
     
