@@ -9,8 +9,7 @@
     
     function completed(total) {
         var url = [
-            'https://x.com/intent/post',
-            [
+            'https://x.com/intent/post', [
                 ['text','私は #Amazon で'+year+'年に'+total.toLocaleString()+'円使いました！'],
                 ['url', 'https://github.com/Axe1lyze/Amazon-Aggregator/blob/main/README.md']
             ].map(i=>[i[0],encodeURIComponent(i[1])].join('=')).join('&')
